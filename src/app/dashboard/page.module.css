@@ -1,0 +1,35 @@
+.main {
+    display: grid;
+    max-width: 100vw;
+    max-height: 100vh;
+    grid-template-areas:
+        "a b b b b b b b b b"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c"
+        "a c c c c c c c c c";
+    gap: 5px 5px;
+}
+
+.sidebar {
+    grid-area: a;
+    border-right: 1px solid black;
+    height: 100vh;
+}
+
+.toolbar {
+    grid-area: b;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.itemlistcontainer {
+    grid-area: c;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}

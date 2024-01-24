@@ -1,0 +1,41 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 10vh;
+}
+
+.mid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10vh;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    padding-top: 2rem;
+    overflow-y: auto;
+}
+
+.title {
+    display: flex;
+    column-gap: 1px;
+}
+
+.ul {
+    margin-left: 1rem;
+}
+
+.li {
+    margin: 1rem 0 1rem 1rem;
+    list-style-type: none;
+}

@@ -1,7 +1,7 @@
-export { default as item } from './ItemListContainer/item';
-export { default as itemList } from './ItemListContainer/itemList';
-export { default as itemListContainer } from './ItemListContainer/itemListContainer';
-export { default as sidebar } from './Sidebar/page';
-export { default as toolbar } from './Toolbar/toolbar';
+export { default as item } from './itemListContainer/item/page';
+export { default as itemList } from './itemListContainer/itemList';
+export { default as itemListContainer } from './itemListContainer/page';
 export { default as layout } from './layout';
 export { default as page } from './page';
+export { default as sidebar } from './sidebar/page';
+export { default as toolbar } from './toolbar/page';
