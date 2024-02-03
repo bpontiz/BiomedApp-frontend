@@ -13,13 +13,13 @@
         "a c c c c c c c c c"
         "a c c c c c c c c c"
         "a c c c c c c c c c";
+    grid-template-rows: repeat(10, 1fr);
     gap: 5px 5px;
 }
 
 .sidebar {
     grid-area: a;
     border-right: 1px solid black;
-    height: 100vh;
 }
 
 .toolbar {
@@ -30,6 +30,7 @@
 
 .itemlistcontainer {
     grid-area: c;
+    padding: 2rem;
     border-left: 1px solid black;
     border-top: 1px solid black;
 }

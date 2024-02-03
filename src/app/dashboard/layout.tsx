@@ -1,6 +1,3 @@
-import { ibm } from "../lib/fonts";
-
-
 export default function Layout({
     children,
   }: Readonly<{
@@ -8,7 +5,7 @@ export default function Layout({
   }>) {
     return (
         <html lang="en">
-          <body className={ibm.className}>{children}</body>
+          <body>{children}</body>
         </html>
     );
 }
