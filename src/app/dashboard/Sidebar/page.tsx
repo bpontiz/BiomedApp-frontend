@@ -8,7 +8,9 @@ import {
     Collapse,
     ListSubheader,
     createTheme,
-    ThemeProvider
+    ThemeProvider,
+    Divider,
+    Avatar
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
@@ -23,8 +25,10 @@ import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
 import HubIcon from '@mui/icons-material/Hub';
 import { useState } from 'react';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-
-
+import Image from 'next/image';
+import { ibm } from '@/app/lib/fonts';
+import humanFace from '../../../../public/human-face.jpg'
+import hexIcon from '../../../../public/hexIcon.png';
 
 export default function Sidebar() {
     const [openStatistics, setopenStatistics] = useState(false);
@@ -44,48 +48,33 @@ export default function Sidebar() {
         <main className={styles.main}>
             <div className={styles.top}>
                 <div className={styles.title}>
-                    <img src="" alt="icon" />
-                    <p>BIOMAPP</p>
+                    <Image src={hexIcon} alt='enterprise logo' width={75} height={75}/>
                 </div>
-                <img src="" alt="burguer" />
             </div>
+            <Divider sx={{ bgcolor: '#284B63' }}
+                orientation="horizontal" variant='middle' />
             <div className={styles.mid}>
-                <img src="" alt="profile" />
-                <p>Juan Pedro</p>
-                <p>Technician</p>
+                <Avatar sx={{width: 75, height: 75}} alt='Sara Mainn'>
+                    <Image src={humanFace} alt='human face' width={100} height={75} />
+                </Avatar>
+                <p className={styles.profileName}>Sara Mann</p>
+                <p>X-Ray Technician</p>
             </div>
+            <Divider sx={{ bgcolor: '#284B63' }}
+                orientation="horizontal" variant='middle' />
             <div className={styles.bottom}>
-                {/* <ul className={styles.ul}>
-                    <p>GENERAL</p>
-                    <li className={styles.li}>Dashboard</li>
-                    <li className={styles.li}>Statistics</li>
-                </ul>
-                <ul className={styles.ul}>
-                    <p>MANAGEMENT</p>
-                    <li className={styles.li}>Worksheets</li>
-                    <li className={styles.li}>Orders</li>
-                    <li className={styles.li}>Inventory</li>
-                    <li className={styles.li}>Maintenance</li>
-                    <li className={styles.li}>Comodato</li>
-                    <li className={styles.li}>Polyduct</li>
-                </ul>
-                <ul className={styles.ul}>
-                    <p>FOUNDATION</p>
-                    <li className={styles.li}>Overview</li>
-                    <li className={styles.li}>Documentation</li>
-                </ul> */}
-
                 <ThemeProvider theme={theme}>
                     <List
-                        sx={{ width: '100%', maxWidth: 370}}
+                        sx={{ width: '100%', maxWidth: 350}}
                         component="nav"
                         aria-labelledby="nested-list-subheader"
                         subheader={
                             <ListSubheader component="div" id="nested-list-subheader">
                             </ListSubheader>
                         }
+                        className={styles.midList}
                     >
-                        <p className={styles.listTitle}>GENERAL</p>
+                        <p className={`${ibm.className} ${styles.listTitle}`}>GENERAL</p>
                         <ListItemButton>
                             <ListItemIcon>
                                 <DashboardIcon color='primary'/>
@@ -110,7 +99,7 @@ export default function Sidebar() {
                             </List>
                         </Collapse>
                     
-                        <p className={styles.listTitle}>MANAGEMENT</p>
+                        <p className={`${ibm.className} ${styles.listTitle}`}>MANAGEMENT</p>
                         <ListItemButton onClick={() => setopenWorksheets(!openWorksheets)}>
                             <ListItemIcon>
                                 <DescriptionIcon color='primary'/>
@@ -180,7 +169,7 @@ export default function Sidebar() {
                             </ListItemIcon>
                             <ListItemText primary="Pipeline" disableTypography={true} />
                         </ListItemButton>
-                        <p className={styles.listTitle}>FOUNDATION</p>
+                        <p className={`${ibm.className} ${styles.listTitle}`}>FOUNDATION</p>
                         <ListItemButton>
                             <ListItemIcon>
                                 <ViewCompactAltIcon color='primary'/>

@@ -4,6 +4,7 @@ export default function Toolbar() {
     return (
         <section className={styles.toolbar}>
             <div>
+                <img src="" alt="burguer" />
                 <p>Searchbox</p>
             </div>
             <ul className={styles.ul}>
