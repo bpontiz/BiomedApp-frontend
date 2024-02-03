@@ -2,6 +2,21 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.main, .top, .mid, .bottom {
+    background-color: #181830;
+    color: #FCF7F8;
+}
+
+.main::-webkit-scrollbar {
+    width: 5px;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: #181830;
 }
 
 .top {
@@ -24,7 +39,10 @@
     flex-direction: column;
     height: 80vh;
     padding-top: 2rem;
-    overflow-y: auto;
+}
+
+.listTitle {
+    margin: 1rem;
 }
 
 .title {
