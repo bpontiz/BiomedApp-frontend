@@ -39,7 +39,7 @@ export default function Sidebar() {
     const theme = createTheme({
         palette: {
             primary: {
-                main: '#FCF7F8'
+                main: '#c5c5c5'
             }
         }
     });
@@ -81,7 +81,11 @@ export default function Sidebar() {
                             </ListItemIcon>
                             <ListItemText primary="Dashboard" disableTypography={true} />
                         </ListItemButton>
-                        <ListItemButton onClick={() => setopenStatistics(!openStatistics)}>
+                        <ListItemButton 
+                            onClick={() => {
+                                setopenStatistics(!openStatistics);
+                            }} 
+                            selected={openStatistics}>
                             <ListItemIcon>
                                 <AnalyticsIcon color='primary'/>
                             </ListItemIcon>
@@ -100,7 +104,10 @@ export default function Sidebar() {
                         </Collapse>
                     
                         <p className={`${ibm.className} ${styles.listTitle}`}>MANAGEMENT</p>
-                        <ListItemButton onClick={() => setopenWorksheets(!openWorksheets)}>
+                        <ListItemButton onClick={() => {
+                                setopenWorksheets(!openWorksheets);
+                            }}
+                            selected={openWorksheets}>
                             <ListItemIcon>
                                 <DescriptionIcon color='primary'/>
                             </ListItemIcon>
@@ -117,7 +124,7 @@ export default function Sidebar() {
                                 </ListItemButton>
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={() => setopenOrders(!openOrders)}>
+                        <ListItemButton onClick={() => setopenOrders(!openOrders)} selected={openOrders}>
                             <ListItemIcon>
                                 <EngineeringIcon color='primary'/>
                             </ListItemIcon>
@@ -134,11 +141,11 @@ export default function Sidebar() {
                                 </ListItemButton>
                             </List>
                         </Collapse>
-                        <ListItemButton onClick={() => setopenInventory(!openInventory)}>
+                        <ListItemButton onClick={() => setopenInventory(!openInventory)} selected={openInventory}>
                             <ListItemIcon>
                                 <InventoryIcon color='primary'/>
                             </ListItemIcon>
-                            <ListItemText primary="Inventory" disableTypography={true}/>
+                            <ListItemText primary="Inventory" disableTypography={true} />
                             {openInventory ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={openInventory} timeout="auto" unmountOnExit>
@@ -184,6 +191,9 @@ export default function Sidebar() {
                         </ListItemButton>
                     </List>
                 </ThemeProvider>
+            </div>
+            <div>
+                
             </div>
         </main>
     )

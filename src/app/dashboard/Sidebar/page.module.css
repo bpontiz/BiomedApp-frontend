@@ -8,7 +8,7 @@
 
 .main, .top, .mid, .bottom {
     background-color: #181830;
-    color: #FCF7F8;
+    color: #c5c5c5;
 }
 
 .main::-webkit-scrollbar {
@@ -63,13 +63,4 @@
     justify-content: center;
     align-items: center;
     column-gap: 1px;
-}
-
-.ul {
-    margin-left: 1rem;
-}
-
-.li {
-    margin: 1rem 0 1rem 1rem;
-    list-style-type: none;
 }
