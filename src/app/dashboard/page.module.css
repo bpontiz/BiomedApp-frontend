@@ -1,37 +1,31 @@
 .main {
-    display: grid;
     max-width: 100vw;
     max-height: 100vh;
-    grid-template-areas:
-        "a b b b b b b b b b b"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c"
-        "a c c c c c c c c c c";
-    grid-template-rows: repeat(10, 1fr);
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px 5px;
 }
 
-.sidebar {
-    grid-area: a;
-    border-right: 1px solid black;
+.toolbarAppBar {
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFF;
+    color: #181830;
+    height: 79.41px;
 }
 
-.toolbar {
-    grid-area: b;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+.drawerHeaderLogo {
+    background-color: #181830;
+    border: 1px solid yellow;
+}
+
+.enterpriseLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1px;
+    margin: .25rem;
 }
 
 .itemlistcontainer {
-    grid-area: c;
     padding: 2rem;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
 }

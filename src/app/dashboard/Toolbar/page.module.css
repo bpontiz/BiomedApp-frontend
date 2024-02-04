@@ -11,3 +11,14 @@
     column-gap: 2rem;
     margin-right: 2rem;
 }
+
+.divSearch {
+    display: flex;
+    column-gap: .5rem;
+    align-items: center;
+}
+
+.searchWord {
+    font-size: 12px;
+    text-transform: capitalize;
+}

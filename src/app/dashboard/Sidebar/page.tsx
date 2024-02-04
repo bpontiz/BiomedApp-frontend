@@ -28,7 +28,6 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import Image from 'next/image';
 import { ibm } from '@/app/lib/fonts';
 import humanFace from '../../../../public/human-face.jpg'
-import hexIcon from '../../../../public/hexIcon.png';
 
 export default function Sidebar() {
     const [openStatistics, setopenStatistics] = useState(false);
@@ -47,9 +46,6 @@ export default function Sidebar() {
     return (
         <main className={styles.main}>
             <div className={styles.top}>
-                <div className={styles.title}>
-                    <Image src={hexIcon} alt='enterprise logo' width={75} height={75}/>
-                </div>
             </div>
             <Divider sx={{ bgcolor: '#284B63' }}
                 orientation="horizontal" variant='middle' />
