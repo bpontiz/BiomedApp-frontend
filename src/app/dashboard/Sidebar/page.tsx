@@ -192,9 +192,6 @@ export default function Sidebar() {
                     </List>
                 </ThemeProvider>
             </div>
-            <div>
-                
-            </div>
         </main>
     )
 }
