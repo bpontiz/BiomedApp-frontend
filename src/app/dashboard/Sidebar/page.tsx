@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import styles from './page.module.css';
 import {
     List, 
@@ -27,7 +27,7 @@ import { useState } from 'react';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import Image from 'next/image';
 import { ibm } from '@/app/lib/fonts';
-import humanFace from '../../../../public/human-face.jpg'
+import humanFace from '../../../../public/human-face.jpg';
 
 export default function Sidebar() {
     const [openStatistics, setopenStatistics] = useState(false);
@@ -68,7 +68,6 @@ export default function Sidebar() {
                             <ListSubheader component="div" id="nested-list-subheader">
                             </ListSubheader>
                         }
-                        className={styles.midList}
                     >
                         <p className={`${ibm.className} ${styles.listTitle}`}>GENERAL</p>
                         <ListItemButton>

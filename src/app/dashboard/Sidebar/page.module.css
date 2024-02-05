@@ -42,10 +42,6 @@
     font-weight: 600;
 }
 
-.midList {
-    padding-left: 1rem;
-}
-
 .bottom {
     display: flex;
     flex-direction: column;

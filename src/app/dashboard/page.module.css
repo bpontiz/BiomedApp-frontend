@@ -3,21 +3,6 @@
     max-height: 100vh;
 }
 
-.toolbarAppBar {
-    display: flex;
-    flex-direction: row ;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #FFF;
-    color: #181830;
-    height: 79.41px;
-}
-
-.drawerHeaderLogo {
-    background-color: #181830;
-    border: 1px solid yellow;
-}
-
 .enterpriseLogo {
     display: flex;
     justify-content: center;
@@ -26,6 +11,10 @@
     margin: .25rem;
 }
 
+.enterpriseName {
+    color: #c5c5c5;
+}
+
 .itemlistcontainer {
-    padding: 2rem;
+    padding: 0rem;
 }
