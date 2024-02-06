@@ -1,5 +1,4 @@
-// 'use client'
-import styles from './page.module.css';
+import styles from './sidebar.module.css';
 import {
     List, 
     ListItemButton, 
