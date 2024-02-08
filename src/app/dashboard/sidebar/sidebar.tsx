@@ -43,9 +43,7 @@ export default function Sidebar() {
     });
 
     return (
-        <main className={styles.main}>
-            <div className={styles.top}>
-            </div>
+        <main className={`${styles.main} ${ibm.className}`}>
             <Divider sx={{ bgcolor: '#284B63' }}
                 orientation="horizontal" variant='middle' />
             <div className={styles.mid}>
@@ -60,7 +58,7 @@ export default function Sidebar() {
             <div className={styles.bottom}>
                 <ThemeProvider theme={theme}>
                     <List
-                        sx={{ width: '100%', maxWidth: 350}}
+                        sx={{ width: '100%', maxWidth: 350, ml: 1}}
                         component="nav"
                         aria-labelledby="nested-list-subheader"
                         subheader={

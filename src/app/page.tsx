@@ -1,10 +1,9 @@
 import Link from "next/link";
 import styles from "./page.module.css";
-import { ibm } from "./lib/fonts";
 
 export default function Home() {
   return (
-    <main className={`${ibm.className} antialised`}>
+    <main>
       <p className={`${styles.title}`}>APP</p>
       <ul>
         <li>

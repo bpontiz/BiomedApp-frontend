@@ -13,8 +13,11 @@
 
 .enterpriseName {
     color: #c5c5c5;
+    font-weight: 600;
+    font-size: 20px;
+    height: 32px;
 }
 
-.itemlistcontainer {
-    padding: 0rem;
+.mainDashboard {
+    margin: 2rem 0;
 }

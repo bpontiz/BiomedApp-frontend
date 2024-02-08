@@ -1,0 +1,62 @@
+.head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 8px;
+    margin-left: 0rem;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.subtitle {
+    font-weight: normal;
+}
+
+.todayIs {
+    display: inline;
+    font-weight: bold;
+    color: #888;
+}
+
+.cardContainer {
+    display: flex;
+    max-width: calc(1000px + 2rem*3);
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+}
+
+.card {
+    width: 250px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    box-shadow: 1px 1px 5px 5px rgba(230, 230, 230, 0.8);
+    border-radius: 20px;
+}
+
+.rowCardData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.cardStatus {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.quantity {
+    font-size: 38px;
+}
+
+.quantityIconDiv {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}

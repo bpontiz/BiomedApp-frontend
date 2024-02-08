@@ -1,5 +1,4 @@
 'use client';
-import ItemListContainer from './general/general';
 import Sidebar from './sidebar/sidebar';
 import { ibm } from '../lib/fonts';
 import { AppBar, drawerWidth, DrawerHeader, Main } from './drawer';
@@ -19,6 +18,7 @@ import Image from 'next/image';
 import hexIcon from '../../../public/hexIcon.png';
 import usFlag from '../../../public/us.png';
 import styles from './page.module.css';
+import { Maindashboard } from './main/main';
 
 export default function Dashboard() {
     const theme = useTheme();
@@ -71,7 +71,7 @@ export default function Dashboard() {
                         alignItems: 'center',
                         bgcolor: `${theme2.palette.info.main}`,
                         height: '85px',
-                        boxShadow: '0px 2px 5px 0px rgba(0,0,0,0.15)'
+                        boxShadow: '0px 2px 5px 0px rgba(0,0,0,0.15)',
                     }}
                 >
                     <div>
@@ -87,7 +87,7 @@ export default function Dashboard() {
                             </IconButton>
                         </Tooltip>
                         <Button variant="outlined" startIcon={<SearchIcon />} color='inherit' size='medium'
-                            sx={{borderRadius: '20px', border: '1px solid #999', ml: 2}}>
+                            sx={{borderRadius: '20px', border: '1px solid #999', ml: '1rem'}}>
                                 <p className={styles.searchWord}>Search...</p>
                         </Button>
                     </div>
@@ -158,21 +158,21 @@ export default function Dashboard() {
                     >
                         <div className={styles.enterpriseLogo}>
                             <Image src={hexIcon} alt='enterprise logo' width={75} height={75} priority={true} />
-                            <p className={styles.enterpriseName}>BIOMAPP</p>
+                            <p className={styles.enterpriseName}>Biomapp</p>
+                            <Tooltip title="Close">
+                                <IconButton onClick={handleDrawerClose} className={styles.closeMenu}>
+                                    {theme.direction === 'ltr' ? <ChevronLeftIcon color='primary' fontSize='small' /> : <ChevronRightIcon color='primary' fontSize='small' />}
+                                </IconButton>
+                            </Tooltip>
                         </div>
-                        <Tooltip title="Close">
-                            <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === 'ltr' ? <ChevronLeftIcon color='primary' /> : <ChevronRightIcon color='primary' />}
-                            </IconButton>
-                        </Tooltip>
                     </DrawerHeader>
                     <Sidebar />
                 </Drawer>
             </ThemeProvider>
             <Main open={open}>
                 <DrawerHeader />
-                <div className={styles.itemlistcontainer}>
-                    <ItemListContainer />
+                <div className={styles.mainDashboard}>
+                    <Maindashboard />
                 </div>
             </Main>
         </Box>

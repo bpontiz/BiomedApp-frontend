@@ -4,6 +4,7 @@
     height: 100vh;
     overflow-y: auto;
     scrollbar-gutter: stable;
+    font-size: 14px;
 }
 
 .main, .top, .mid, .bottom {
@@ -12,19 +13,11 @@
 }
 
 .main::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 .main::-webkit-scrollbar-thumb {
     background: #181830;
-}
-
-.top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 15vh;
 }
 
 .mid {
@@ -38,8 +31,8 @@
 }
 
 .profileName {
-    font-size: 18px;
     font-weight: 600;
+    font-size: 16px;
 }
 
 .bottom {
