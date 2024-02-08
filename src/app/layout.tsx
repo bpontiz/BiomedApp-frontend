@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { sen } from "./lib/fonts";
+import { ibm } from "./lib/fonts";
 
 export const metadata: Metadata = {
   title: "H",
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sen.className}>{children}</body>
+      <body className={ibm.className}>{children}</body>
     </html>
   );
 }

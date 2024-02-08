@@ -1,14 +1,20 @@
+'use client'
 import { todayIs } from '@/app/lib/date';
 import BuildIcon from '@mui/icons-material/Build';
-import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
-import DangerousIcon from '@mui/icons-material/Dangerous';
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import FlashOffIcon from '@mui/icons-material/FlashOff';
 import ConstructionSharpIcon from '@mui/icons-material/ConstructionSharp';
+import { Player } from '@lordicon/react';
 import styles from './main.module.css';
+import repairIcon from '../../lib/repair.json';
+import { useEffect, useRef } from 'react';
+
 
 export function Maindashboard() {
+    const playerRef = useRef<Player>(null);
+    useEffect(() => {
+        playerRef.current?.play();
+    }, []);
     return (
         <section className={styles.mainSection}>
             <div className={styles.head}>
@@ -16,13 +22,14 @@ export function Maindashboard() {
                 <h4 className={styles.subtitle}>These are your analytics for today <p className={styles.todayIs}>{todayIs()}</p></h4>
             </div>
             <section className={styles.cardContainer}>
-                <div className={styles.card}>
+                <div className={styles.card} onMouseEnter={() => playerRef.current?.playFromBeginning()} onMouseLeave={() => playerRef.current?.goToLastFrame()}>
                     <div className={styles.rowCardData}>
                         <p className={styles.cardStatus}>Repaired</p>
                         <p>Monthly</p>
                     </div>
                     <div className={styles.quantityIconDiv}>
-                        <BuildIcon fontSize='large' sx={{color: '#46B041'}} />
+                        <Player ref={playerRef} size={45} icon={repairIcon} colorize='#286A24' />
+                        {/* <BuildIcon fontSize='large' sx={{color: '#46B041'}} /> */}
                         <p className={styles.quantity}>19</p>
                     </div>
                     <div className={styles.rowCardData}>
