@@ -2,7 +2,7 @@
 import Sidebar from './sidebar/sidebar';
 import { ibm } from '../lib/fonts';
 import { AppBar, drawerWidth, DrawerHeader, Main } from './drawer';
-import { Box, Button, Drawer, Stack, createTheme, useTheme, ThemeProvider } from '@mui/material';
+import { Box, Button, Drawer, Stack, createTheme, useTheme, ThemeProvider, Menu, MenuItem, Divider, ListItemIcon, Avatar } from '@mui/material';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -19,12 +19,21 @@ import hexIcon from '../../../public/hexIcon.png';
 import usFlag from '../../../public/us.png';
 import styles from './page.module.css';
 import { Maindashboard } from './main/main';
+import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 
 export default function Dashboard() {
     const theme = useTheme();
     const [open, setOpen] = useState(true);
     const [count, setCount] = useState(1);
     const [invisible, setInvisible] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const openProfile = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const theme2 = createTheme({
         palette: {
@@ -127,10 +136,83 @@ export default function Dashboard() {
                                 </Badge>
                             </Tooltip>
                             <Tooltip title="Profile">
-                                <IconButton aria-label="profile" sx={{bgcolor: '#DFF6FF', borderRadius: '10px'}}>
+                                <IconButton 
+                                    onClick={handleClick} 
+                                    aria-label="profile"
+                                    aria-controls={openProfile ? 'account-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={openProfile ? 'true' : undefined}
+                                    sx={
+                                        {
+                                            bgcolor: '#DFF6FF', 
+                                            borderRadius: '10px'
+                                        }
+                                    }
+                                >
                                     <PersonIcon htmlColor='#3384A4' />
                                 </IconButton>
                             </Tooltip>
+                            <Menu
+                                anchorEl={anchorEl}
+                                id="account-menu"
+                                open={openProfile}
+                                onClose={handleClose}
+                                onClick={handleClose}
+                                PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: 'visible',
+                                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                    mt: 1.5,
+                                    '& .MuiAvatar-root': {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.5,
+                                        mr: 1,
+                                    },
+                                    '&::before': {
+                                        content: '""',
+                                        display: 'block',
+                                        position: 'absolute',
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: 'background.paper',
+                                        transform: 'translateY(-50%) rotate(45deg)',
+                                        zIndex: 0,
+                                    },
+                                },
+                                }}
+                                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                            >
+                                <MenuItem onClick={handleClose}>
+                                    <Avatar /> Profile
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <Avatar /> My account
+                                </MenuItem>
+                                <Divider />
+                                <MenuItem onClick={handleClose}>
+                                <ListItemIcon>
+                                    <PersonAdd fontSize="small" />
+                                </ListItemIcon>
+                                Add another account
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                <ListItemIcon>
+                                    <Settings fontSize="small" />
+                                </ListItemIcon>
+                                Settings
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                <ListItemIcon>
+                                    <Logout fontSize="small" />
+                                </ListItemIcon>
+                                Logout
+                                </MenuItem>
+                            </Menu>
                         </Stack>
                     </div>
                 </AppBar>

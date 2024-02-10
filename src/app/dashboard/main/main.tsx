@@ -110,7 +110,6 @@ export function Maindashboard() {
                             <p className={styles.area}>Burnt</p>
                             <LinearProgressWithLabel value={burnt} />
                         </Box>
-                        
                     </div>
                 </section>
             </div>
