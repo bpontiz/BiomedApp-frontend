@@ -14,25 +14,56 @@ import MessageIcon from '@mui/icons-material/Message';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Badge from '@mui/material/Badge';
 import Tooltip from '@mui/material/Tooltip';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import hexIcon from '../../../public/hexIcon.png';
 import usFlag from '../../../public/us.png';
+import esFlag from '../../../public/es.png';
+import deFlag from '../../../public/de.png';
 import styles from './page.module.css';
+import person1 from '../lib/boy1.png';
+import person2 from '../lib/boy2.png';
 import { Maindashboard } from './main/main';
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
+import { Logout, PersonAdd, PersonOff, Settings, WidthFull } from '@mui/icons-material';
 
 export default function Dashboard() {
     const theme = useTheme();
     const [open, setOpen] = useState(true);
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(3);
+    const [lang, setLang] = useState(usFlag);
     const [invisible, setInvisible] = useState(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [anchorElLanguage, setAnchorElLanguage] = useState<null | HTMLElement>(null);
+    const [anchorElMessages, setAnchorElMessages] = useState<null | HTMLElement>(null);
     const openProfile = Boolean(anchorEl);
+    const openLanguage = Boolean(anchorElLanguage);
+    const openMessages = Boolean(anchorElMessages);
+
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleClickLanguage = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElLanguage(event.currentTarget);
+    };
+
+    const handleClickMessages = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElMessages(event.currentTarget);
+    };
+
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleCloseLanguage = () => {
+        setAnchorElLanguage(null);
+    };
+
+    const handleCloseMessages = () => {
+        setAnchorElMessages(null);
+    };
+
+    const handleLanguageChose = (langChosen: StaticImageData) => {
+        setLang(langChosen);
     };
 
     const theme2 = createTheme({
@@ -111,14 +142,26 @@ export default function Dashboard() {
                                         horizontal: 'right',
                                     }}
                                 >
-                                    <IconButton aria-label="delete" sx={{bgcolor: '#FFF9E4', borderRadius: '10px'}}>
+                                    <IconButton sx={{bgcolor: '#FFF9E4', borderRadius: '10px'}}
+                                        onClick={handleClickMessages} 
+                                        aria-label="messages"
+                                        aria-controls={openMessages ? 'messages-menu' : undefined}
+                                        aria-haspopup="true"
+                                        aria-expanded={openMessages ? 'true' : undefined}
+                                    >
                                         <MessageIcon sx={{height: '20px'}} color='warning'/>
                                     </IconButton>
                                 </Badge>
                             </Tooltip>
                             <Tooltip title="Language">
-                                <IconButton aria-label="delete" sx={{bgcolor: '#EBEBEB', borderRadius: '10px'}}>
-                                    <Image src={usFlag} alt='us' width={22} height={16} />
+                                <IconButton
+                                    sx={{bgcolor: '#EBEBEB', borderRadius: '10px'}}
+                                    onClick={handleClickLanguage} 
+                                    aria-label="language"
+                                    aria-controls={openLanguage ? 'language-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={openLanguage ? 'true' : undefined}>
+                                    <Image src={lang} alt='us' width={22} height={16} />
                                 </IconButton>
                             </Tooltip>
                             <Tooltip title="Notifications">
@@ -152,6 +195,132 @@ export default function Dashboard() {
                                     <PersonIcon htmlColor='#3384A4' />
                                 </IconButton>
                             </Tooltip>
+                            <Menu
+                                anchorEl={anchorElMessages}
+                                id="messages-menu"
+                                open={openMessages}
+                                onClose={handleCloseMessages}
+                                onClick={handleClose}
+                                PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: 'visible',
+                                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                    mt: 1.5,
+                                    '& .MuiAvatar-root': {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.5,
+                                        mr: 1,
+                                    },
+                                    '&::before': {
+                                        content: '""',
+                                        display: 'block',
+                                        position: 'absolute',
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: 'background.paper',
+                                        transform: 'translateY(-50%) rotate(45deg)',
+                                        zIndex: 0,
+                                    },
+                                },
+                                }}
+                                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                            >
+                                <MenuItem>
+                                    <p className={ibm.className}>You have <strong>3</strong> new messages</p>
+                                </MenuItem>
+                                <Divider />
+                                <MenuItem onClick={handleCloseMessages}>
+                                    <ListItemIcon>
+                                        <Avatar alt='Person 1' sx={{width: 75, height: 75}}>
+                                            <Image src={person1} alt='Person 1' width={70} height={45} />
+                                        </Avatar>
+                                    </ListItemIcon>
+                                    <div className={ibm.className}>
+                                        <p><strong>Peril Jones</strong></p>
+                                        <p className={styles.personMessage}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae necessitatibus corporis beatae quidem ratione dignissimos placeat accusamus quae eligendi recusandae delectus esse impedit culpa labore quod iste eius, rem voluptas.</p>
+                                    </div>
+                                </MenuItem>
+                                <Divider />
+                                <MenuItem onClick={handleCloseMessages}>
+                                    <ListItemIcon>
+                                        <Avatar alt='Person 2' sx={{width: 75, height: 75}}>
+                                            <Image src={person2} alt='Person 2' width={70} height={45}/>
+                                        </Avatar>
+                                    </ListItemIcon>
+                                    <div className={ibm.className}>
+                                        <p><strong>Ernesto Briggs</strong></p>
+                                        <p className={styles.personMessage}>Aram it enesur volks valks</p>
+                                    </div>
+                                </MenuItem>                                
+                            </Menu>
+                            <Menu
+                                anchorEl={anchorElLanguage}
+                                id="language-menu"
+                                open={openLanguage}
+                                onClose={handleCloseLanguage}
+                                onClick={handleClose}
+                                PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    overflow: 'visible',
+                                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                    mt: 1.5,
+                                    '& .MuiAvatar-root': {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.5,
+                                        mr: 1,
+                                    },
+                                    '&::before': {
+                                        content: '""',
+                                        display: 'block',
+                                        position: 'absolute',
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: 'background.paper',
+                                        transform: 'translateY(-50%) rotate(45deg)',
+                                        zIndex: 0,
+                                    },
+                                },
+                                }}
+                                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                            >
+                                <MenuItem onClick={() => {
+                                    handleCloseLanguage();
+                                    handleLanguageChose(usFlag);
+                                }}>
+                                    <ListItemIcon>
+                                        <Image src={usFlag} alt='us' width={22} height={16} />
+                                    </ListItemIcon>
+                                    <p className={ibm.className}>English</p>
+                                </MenuItem>
+                                <MenuItem onClick={() => {
+                                    handleCloseLanguage();
+                                    handleLanguageChose(esFlag);
+                                }}>
+                                    <ListItemIcon>
+                                        <Image src={esFlag} alt='us' width={22} height={16} />
+                                    </ListItemIcon>
+                                    <p className={ibm.className}>Spanish</p>
+                                </MenuItem>
+                                <MenuItem onClick={() => {
+                                    handleLanguageChose(deFlag);
+                                    handleCloseLanguage();
+                                }}>
+                                    <ListItemIcon>
+                                        <Image src={deFlag} alt='us' width={22} height={16} />
+                                    </ListItemIcon>
+                                    <p className={ibm.className}>Deutch</p>
+                                </MenuItem>                                
+                            </Menu>
                             <Menu
                                 anchorEl={anchorEl}
                                 id="account-menu"
@@ -188,29 +357,29 @@ export default function Dashboard() {
                                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                             >
                                 <MenuItem onClick={handleClose}>
-                                    <Avatar /> Profile
+                                    <p className={ibm.className}>Profile</p>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    <Avatar /> My account
+                                    <p className={ibm.className}>My account</p>
                                 </MenuItem>
                                 <Divider />
                                 <MenuItem onClick={handleClose}>
                                 <ListItemIcon>
                                     <PersonAdd fontSize="small" />
                                 </ListItemIcon>
-                                Add another account
+                                <p className={ibm.className}>Add another account</p>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
                                 <ListItemIcon>
                                     <Settings fontSize="small" />
                                 </ListItemIcon>
-                                Settings
+                                <p className={ibm.className}>Settings</p>
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
                                 <ListItemIcon>
                                     <Logout fontSize="small" />
                                 </ListItemIcon>
-                                Logout
+                                <p className={ibm.className}>Logout</p>
                                 </MenuItem>
                             </Menu>
                         </Stack>

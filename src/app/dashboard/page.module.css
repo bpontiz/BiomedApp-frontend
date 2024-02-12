@@ -21,3 +21,10 @@
 .mainDashboard {
     margin: 2rem 0;
 }
+
+.personMessage {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
