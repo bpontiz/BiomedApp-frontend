@@ -1,7 +1,7 @@
 'use client'
 import { todayIs } from '@/app/lib/date';
 import { Player } from '@lordicon/react';
-import styles from './main.module.css';
+import styles from './page.module.css';
 import repairIcon from '../../lib/repair.json';
 import lightningIcon from '../../lib/lightning.json';
 import checkIcon from '../../lib/check.json';
@@ -11,7 +11,7 @@ import { Box } from '@mui/material';
 import { LinearProgressWithLabel } from './progressBar';
 
 
-export function Maindashboard() {
+export default function Maindashboard() {
     const playerRefRepair = useRef<Player>(null);
     const playerRefLightning = useRef<Player>(null);
     const playerRefCheck = useRef<Player>(null);

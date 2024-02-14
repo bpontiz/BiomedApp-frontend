@@ -9,7 +9,7 @@ import {
     createTheme,
     ThemeProvider,
     Divider,
-    Avatar
+    Avatar,
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
@@ -21,12 +21,14 @@ import BuildIcon from '@mui/icons-material/Build';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import ViewCompactAltIcon from '@mui/icons-material/ViewCompactAlt';
 import AssignmentLateIcon from '@mui/icons-material/AssignmentLate';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import HubIcon from '@mui/icons-material/Hub';
 import { useState } from 'react';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import Image from 'next/image';
 import { ibm } from '@/app/lib/fonts';
 import humanFace from '../../../../public/human-face.jpg';
+import Link from 'next/link';
 
 export default function Sidebar() {
     const [openStatistics, setopenStatistics] = useState(false);
@@ -67,12 +69,22 @@ export default function Sidebar() {
                         }
                     >
                         <p className={`${ibm.className} ${styles.listTitle}`}>GENERAL</p>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <DashboardIcon color='primary'/>
-                            </ListItemIcon>
-                            <ListItemText primary="Dashboard" disableTypography={true} />
-                        </ListItemButton>
+                        <Link href='/dashboard/main' className={styles.linking}>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <DashboardIcon color='primary'/>
+                                </ListItemIcon>
+                                <ListItemText primary="Dashboard" disableTypography={true} />
+                            </ListItemButton>
+                        </Link>
+                        <Link href='/dashboard/workspace' className={styles.linking}>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <WorkOutlineOutlinedIcon color='primary'/>
+                                </ListItemIcon>
+                                <ListItemText primary="Workspace" disableTypography={true} />
+                            </ListItemButton>
+                        </Link>
                         <ListItemButton 
                             onClick={() => {
                                 setopenStatistics(!openStatistics);

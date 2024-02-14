@@ -22,10 +22,9 @@ import deFlag from '../../../public/de.png';
 import styles from './page.module.css';
 import person1 from '../lib/boy1.png';
 import person2 from '../lib/boy2.png';
-import { Maindashboard } from './main/main';
-import { Logout, PersonAdd, PersonOff, Settings, WidthFull } from '@mui/icons-material';
+import { Logout, PersonAdd, Settings  } from '@mui/icons-material';
 
-export default function Dashboard() {
+export default function Layout({ children }: { children: React.ReactNode }) {
     const theme = useTheme();
     const [open, setOpen] = useState(true);
     const [count, setCount] = useState(3);
@@ -423,9 +422,9 @@ export default function Dashboard() {
             <Main open={open}>
                 <DrawerHeader />
                 <div className={styles.mainDashboard}>
-                    <Maindashboard />
+                    {children}
                 </div>
             </Main>
         </Box>
-    )
+    );
 }

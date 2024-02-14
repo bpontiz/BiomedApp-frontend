@@ -46,3 +46,8 @@
     margin: 1rem;
     font-weight: 600;
 }
+
+.linking {
+    text-decoration: none;
+    color: #c5c5c5;
+}
