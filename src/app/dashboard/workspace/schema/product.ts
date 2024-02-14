@@ -10,3 +10,5 @@ export interface ProductDb {
     description: string;
     timestamp: string
 };
+
+export type Product = Omit<ProductDb, 'id'>;

@@ -1,13 +1,13 @@
 import ItemList from './itemList/itemList';
 import styles from './page.module.css';
-import { ProductDb } from './schema/product';
+import { Product } from './schema/product';
 
 async function getMachinery() {
     const url: string = process.env.API_GETMACHINERY || 'http://localhost/';
     try {
         const getData = await fetch(url);
 
-        const machinery: ProductDb[] | [] = await getData.json();
+        const machinery: Product[] | [] = await getData.json();
 
         return machinery;
     }

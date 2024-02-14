@@ -1,12 +1,12 @@
 'use-client'
 import Item from "../item/item";
-import { ProductDb } from "../schema/product";
+import { Product } from "../schema/product";
 
-export default function ItemList( { data }: { data: ProductDb[] | [] } ) {
+export default function ItemList( { data }: { data: Product[] | [] } ) {
     return (
         <div>
             {
-                data.map( machinery => <Item key={machinery.id}/>)
+                data.map( machinery => <Item key={machinery.name} name={machinery.name} serie={machinery.serie} status={machinery.status} last_service={machinery.last_service} next_service={machinery.next_service} description={machinery.description} timestamp={machinery.timestamp} /> )
             }
         </div>
     );
