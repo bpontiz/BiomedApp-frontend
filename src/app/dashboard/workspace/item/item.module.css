@@ -1,0 +1,70 @@
+.card {
+    border-radius: 20px;
+    box-shadow: 1px 1px 5px 5px rgba(230, 230, 230, 0.8);
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.firstDiv {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.nameDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.headerAvailable {
+    background-color: rgb(176, 247, 70);
+}
+
+.headerDamaged {
+    background-color: rgb(255, 185, 199);
+}
+
+.headerRepairing {
+    background-color: rgb(176, 225, 255);
+}
+
+.headerInUse {
+    background-color: rgb(255, 194, 62);
+}
+
+.headerAvailable, .headerDamaged, .headerRepairing, .headerInUse {
+    padding: 5px;
+}
+
+.lastServiceDiv, .nextServiceDiv, .serieDiv, .areaDiv, .actionsDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lastServiceDiv, .nextServiceDiv, .serieDiv, .areaDiv {
+    padding: 0 10px;
+}
+
+.actionsDiv {
+    padding: 10px;
+}
+
+.nameData {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.descriptionData {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 30px 10px;
+}

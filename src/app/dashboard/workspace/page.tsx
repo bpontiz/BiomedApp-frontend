@@ -1,29 +1,25 @@
+'use client'
+import { useEffect, useState } from 'react';
 import ItemList from './itemList/itemList';
 import styles from './page.module.css';
-import { Product } from './schema/product';
 
-async function getMachinery() {
-    const url: string = process.env.API_GETMACHINERY || 'http://localhost/';
-    try {
-        const getData = await fetch(url);
+const url = process.env.NEXT_PUBLIC_API_GETMACHINERY || 'https://localhost';
 
-        const machinery: Product[] | [] = await getData.json();
+export default function Page() {
+    const [machinery, setMachinery] = useState([]);
+    
+    useEffect(() => {
+        fetch(url, { next: { revalidate: 1000}})
+            .then(res => res.json())
+            .then(data => setMachinery(data));
 
-        return machinery;
-    }
-    catch {
-        return [];
-    };
-};
-
-export default async function Page() {
-    const getData = await getMachinery();
+    },[machinery]);
 
     return <>
         <section className={styles.section}>
             <p className={styles.title}><strong>Workspace</strong></p>
-            <div>
-                <ItemList data={getData} />
+            <div className={styles.itemContainer}>
+                <ItemList data={machinery} />
             </div>
         </section>
     </>;
