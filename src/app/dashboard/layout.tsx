@@ -114,7 +114,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     }}
                 >
                     <div>
-                        <Tooltip title="Menu">
+                        <Tooltip title="Menu" arrow>
                             <IconButton
                                 color="inherit"
                                 aria-label="open drawer"
@@ -132,7 +132,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </div>
                     <div>
                         <Stack direction="row" spacing={2} sx={{mr: '1rem'}}>
-                            <Tooltip title="Messages">
+                            <Tooltip title="Messages" arrow>
                                 <Badge
                                     color="warning"
                                     badgeContent={count}
@@ -152,7 +152,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     </IconButton>
                                 </Badge>
                             </Tooltip>
-                            <Tooltip title="Language">
+                            <Tooltip title="Language" arrow>
                                 <IconButton
                                     sx={{bgcolor: '#EBEBEB', borderRadius: '10px'}}
                                     onClick={handleClickLanguage} 
@@ -160,10 +160,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     aria-controls={openLanguage ? 'language-menu' : undefined}
                                     aria-haspopup="true"
                                     aria-expanded={openLanguage ? 'true' : undefined}>
-                                    <Image src={lang} alt='us' width={22} height={16} />
+                                    <Image src={lang} alt='us' width={22} height={16} priority />
                                 </IconButton>
                             </Tooltip>
-                            <Tooltip title="Notifications">
+                            <Tooltip title="Notifications" arrow>
                                 <Badge
                                     color='error'
                                     variant="dot"
@@ -177,7 +177,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     </IconButton>
                                 </Badge>
                             </Tooltip>
-                            <Tooltip title="Profile">
+                            <Tooltip title="Profile" arrow>
                                 <IconButton 
                                     onClick={handleClick} 
                                     aria-label="profile"
@@ -409,7 +409,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <div className={styles.enterpriseLogo}>
                             <Image src={hexIcon} alt='enterprise logo' width={75} height={75} priority={true} />
                             <p className={styles.enterpriseName}>Biomapp</p>
-                            <Tooltip title="Close">
+                            <Tooltip title="Close" arrow>
                                 <IconButton onClick={handleDrawerClose} className={styles.closeMenu}>
                                     {theme.direction === 'ltr' ? <ChevronLeftIcon color='primary' fontSize='small' /> : <ChevronRightIcon color='primary' fontSize='small' />}
                                 </IconButton>

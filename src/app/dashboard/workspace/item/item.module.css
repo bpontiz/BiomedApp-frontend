@@ -1,70 +1,78 @@
-.card {
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px 5px rgba(230, 230, 230, 0.8);
-    width: 350px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.firstDiv {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-}
-
-.nameDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 10px;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-}
-
-.headerAvailable {
-    background-color: rgb(176, 247, 70);
-}
-
-.headerDamaged {
-    background-color: rgb(255, 185, 199);
-}
-
-.headerRepairing {
-    background-color: rgb(176, 225, 255);
-}
-
-.headerInUse {
-    background-color: rgb(255, 194, 62);
-}
-
-.headerAvailable, .headerDamaged, .headerRepairing, .headerInUse {
-    padding: 5px;
-}
-
-.lastServiceDiv, .nextServiceDiv, .serieDiv, .areaDiv, .actionsDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.lastServiceDiv, .nextServiceDiv, .serieDiv, .areaDiv {
-    padding: 0 10px;
-}
-
-.actionsDiv {
-    padding: 10px;
-}
-
-.nameData {
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.descriptionData {
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.cardD {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    padding: 30px 10px;
+    width: 300px;
+}
+  
+.cardHeaderD {
+    background-color: #181830;
+    color: #DDD;
+    padding: 15px;
+    text-align: center;
+}
+
+.deviceImg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+  
+.cardBodyD {
+    padding: 0 20px;
+}
+  
+.cardBodyD p {
+    font-size: 16px;
+    line-height: 1.5;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 0 6px;
+}
+
+.buttonsDivD {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ulItems {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    list-style-type: none;
+    padding: 0 6px;
+}
+
+.button1 {
+    color: #286A24;
+}
+
+.button2 {
+    color: #181830;
+}
+
+.statusAvailable, .statusInUse, .statusDamaged, .statusRepairing {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.statusAvailable {
+    background-color: greenyellow;
+}
+
+.statusInUse {
+    background-color: gold;
+}
+
+.statusDamaged {
+    background-color: rgb(255, 23, 23);
+    color: #FFF;
+}
+
+.statusRepairing {
+    background-color: skyblue;
 }

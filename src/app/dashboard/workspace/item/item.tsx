@@ -1,72 +1,63 @@
-import { Divider } from "@mui/material";
 import { Product } from "../schema/product";
 import styles from './item.module.css';
+import Image from "next/image";
+import CT from '../../../../../public/Header_CT.jpg';
+import BuildIcon from '@mui/icons-material/Build';
+import { Chip, IconButton, Stack, Tooltip } from "@mui/material";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { ReactNode } from "react";
 
-export default function Item( { name, serie, status, last_service, next_service, description }: Product ) {
+export default function Item( { name, serie, status, last_service, next_service, area, image, description }: Product ) {
     return (
-        <section className={styles.card}>
-            <div className={styles.firstDiv}>
-                {
-                    (() => {
-                        if(status === 'Available') {
-                            return (
-                                <div className={`${styles.nameDiv} ${styles.headerAvailable}`}>
-                                    <p className={styles.nameData}>{name}</p>
-                                    <p>{status}</p>
-                                </div>
-                            )
-                        }
-                        if(status === 'Damaged') {
-                            return (
-                                <div className={`${styles.nameDiv} ${styles.headerDamaged}`}>
-                                    <p className={styles.nameData}>{name}</p>
-                                    <p>{status}</p>
-                                </div>
-                            )
-                        }
-                        if(status === 'Repairing') {
-                            return (
-                                <div className={`${styles.nameDiv} ${styles.headerRepairing}`}>
-                                    <p className={styles.nameData}>{name}</p>
-                                    <p>{status}</p>
-                                </div>
-                            )
-                        }
-                        if(status === 'In use') {
-                            return (
-                                <div className={`${styles.nameDiv} ${styles.headerInUse}`}>
-                                    <p className={styles.nameData}>{name}</p>
-                                    <p>{status}</p>
-                                </div>
-                            )
-                        }
-                    })()
-                }
-                <div className={styles.serieDiv}>
-                    <p>Serie</p>
-                    <p>{serie}</p>
+        <section className={styles.section}>
+            <div className={styles.cardD}>
+                <div className={styles.cardHeaderD}>
+                    <h2>{name}</h2>
                 </div>
-                <div className={styles.areaDiv}>
-                    <p>Area</p>
-                    <p>Area</p>
+                <div>
+                    <Image className={styles.deviceImg} src={CT} alt="Medical Device" priority />
+                    <div className={styles.cardBodyD}>
+                        <p>{description}</p>
+                        <br />
+                        <ul className={styles.ulItems}>
+                            <li>Serie: {serie}</li>
+                            <li>Last service: {last_service}</li>
+                            <li>Next service: {next_service}</li>
+                            <li>Area: {area}</li>
+                        </ul>
+                        <br />
+                        <div className={styles.buttonsDivD}>
+                            <Stack direction="row" spacing={1}>
+                                <Tooltip title="Repair" arrow>
+                                    <IconButton className={styles.button1} aria-label="repair">
+                                        <BuildIcon />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="More" arrow>
+                                    <IconButton className={styles.button2} aria-label="more details">
+                                        <AddCircleIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            </Stack>
+                            {
+                                (function (): ReactNode {
+                                    if (status === 'Available') {
+                                        return <Chip label={status}size="small" className={styles.statusAvailable} />
+                                    }
+                                    if (status === 'In use') {
+                                        return <Chip label={status}size="small" className={styles.statusInUse} />
+                                    }
+                                    if (status === 'Damaged') {
+                                        return <Chip label={status}size="small" className={styles.statusDamaged} />
+                                    }
+
+                                    return <Chip label={status}size="small" className={styles.statusRepairing} />
+                                    
+                                })()
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.lastServiceDiv}>
-                    <p>Last service</p>
-                    <p>{last_service}</p>
-                </div>
-                <div className={styles.nextServiceDiv}>
-                    <p>Next service</p>
-                    <p>{next_service}</p>
-                </div>
-                <Divider />
-                <div className={styles.descriptionDiv}>
-                    <p className={styles.descriptionData}>{description}</p>
-                </div>
-                <Divider />
-            </div>
-            <div className={styles.actionsDiv}>
-                <p>REPAIR</p>
-                <p>MORE</p>
             </div>
         </section>
     );

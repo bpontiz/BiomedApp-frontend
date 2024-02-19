@@ -28,6 +28,7 @@
     align-items: center;
     height: 10vh;
     row-gap: 6px;
+    scrollbar-gutter: stable;
 }
 
 .profileName {
