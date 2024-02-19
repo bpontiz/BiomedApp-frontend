@@ -1,6 +1,6 @@
 export type Status = 'Available' | 'Repairing' | 'In use' | 'Damaged';
 
-export interface ProductDb {
+export default interface ProductDb {
     id: number;
     name: string;
     serie: string;
@@ -12,5 +12,3 @@ export interface ProductDb {
     image: string;
     timestamp: string
 };
-
-export type Product = Omit<ProductDb, 'id'>;

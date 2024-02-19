@@ -55,6 +55,14 @@
     color: #181830;
 }
 
+.button3 {
+    color: #ED2839;
+}
+
+.button4 {
+    color: #2774AE;
+}
+
 .statusAvailable, .statusInUse, .statusDamaged, .statusRepairing {
     font-weight: bold;
     font-size: 12px;
