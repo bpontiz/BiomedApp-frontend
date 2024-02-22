@@ -4,6 +4,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 300px;
+    height: 600px;
 }
   
 .cardHeaderD {
@@ -14,20 +15,24 @@
 }
 
 .deviceImg {
-    max-width: 100%;
-    height: auto;
+    width: 300px;
+    height: 200px;
     display: block;
     margin: 0 auto 20px;
 }
-  
+
 .cardBodyD {
     padding: 0 20px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
   
 .cardBodyD p {
     font-size: 16px;
     line-height: 1.5;
-    max-height: 100px;
+    height: 100px;
     overflow-y: auto;
     padding: 0 6px;
 }
@@ -45,42 +50,4 @@
     row-gap: 5px;
     list-style-type: none;
     padding: 0 6px;
-}
-
-.button1 {
-    color: #286A24;
-}
-
-.button2 {
-    color: #181830;
-}
-
-.button3 {
-    color: #ED2839;
-}
-
-.button4 {
-    color: #2774AE;
-}
-
-.statusAvailable, .statusInUse, .statusDamaged, .statusRepairing {
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.statusAvailable {
-    background-color: greenyellow;
-}
-
-.statusInUse {
-    background-color: gold;
-}
-
-.statusDamaged {
-    background-color: rgb(255, 23, 23);
-    color: #FFF;
-}
-
-.statusRepairing {
-    background-color: skyblue;
 }

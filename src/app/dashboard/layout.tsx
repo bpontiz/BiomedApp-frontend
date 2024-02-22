@@ -421,7 +421,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </ThemeProvider>
             <Main open={open}>
                 <DrawerHeader />
-                <div className={styles.mainDashboard}>
+                <div className={`${styles.mainDashboard} ${ibm.className}`}>
                     {children}
                 </div>
             </Main>
