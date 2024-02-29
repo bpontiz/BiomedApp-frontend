@@ -2,14 +2,21 @@ import Product from "../schema/product";
 import styles from './item.module.css';
 import Image from "next/image";
 import BuildIcon from '@mui/icons-material/Build';
-import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Stack, Tooltip } from "@mui/material";
+import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, TextField, Tooltip } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { ReactNode, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { ibm } from "@/app/lib/fonts";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { VisuallyHiddenInput } from "../form";
 
 export default function Item( { id, name, serie, status, last_service, next_service, area, image, description }: Product ) {
     const [open, setOpen] = useState(false);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [_status, setStatus] = useState('');
     const handleDeleteEquipment = async () => {
         const url = `${process.env.NEXT_PUBLIC_API_DELETEMACHINERY}/${id}` || "http:localhost/";
         
@@ -17,7 +24,20 @@ export default function Item( { id, name, serie, status, last_service, next_serv
     }
 
     const handleClick = () => {
-        setOpen(!open);
+        setOpen(true);
+    };
+
+    const handleClickEditOpen = () => {
+        setOpenEdit(true);
+    };
+
+    const handleClickEditClose = () => {
+        setStatus('');
+        setOpenEdit(false);
+    };
+
+    const handleStatusChange = (event: SelectChangeEvent) => {
+        setStatus(event.target.value);
     };
 
     return (
@@ -51,7 +71,137 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                 </Tooltip>
                                 <Tooltip title="Edit" arrow>
                                     <IconButton aria-label="edit">
-                                        <EditIcon sx={{color: "#2774AE"}} />
+                                        <EditIcon sx={{color: "#2774AE"}} onClick={handleClickEditOpen}/>
+                                        <Dialog
+                                            open={openEdit}
+                                            onClose={handleClickEditClose}
+                                            PaperProps={{
+                                                component: 'form',
+                                                onSubmit: async (event: React.FormEvent<HTMLFormElement>) => {
+                                                    event.preventDefault();
+                                                    const formData = new FormData(event.currentTarget);
+                                                    const formJson = Object.fromEntries((formData as any).entries());
+                                                    const url = process.env.NEXT_PUBLIC_API_POSTMACHINERY || 'https://localhost';
+                                                    const newEquipment = {
+                                                        ...formJson,
+                                                        image: formJson.image.name
+                                                    };
+                                                    await fetch(url, {
+                                                        method: "POST",
+                                                        headers: {"Content-Type": "application/json"},
+                                                        body: JSON.stringify(newEquipment)
+                                                    });
+                                                    handleClickEditClose();
+                                                },
+                                            }}
+                                        >
+                                            <DialogTitle className={ibm.className}>Update {name}</DialogTitle>
+                                            <DialogContent>
+                                                <DialogContentText className={ibm.className}>
+                                                    Edit this equipment with new information.
+                                                </DialogContentText>
+                                                <TextField
+                                                    autoFocus
+                                                    required
+                                                    margin="dense"
+                                                    id="name"
+                                                    name="name"
+                                                    label="Name"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="outlined"
+                                                />
+                                                <TextField
+                                                    autoFocus
+                                                    required
+                                                    margin="dense"
+                                                    id="name"
+                                                    name="serie"
+                                                    label="Serie"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="outlined"
+                                                />
+                                                <Select
+                                                    required
+                                                    margin="dense"
+                                                    id="name"
+                                                    name="status"
+                                                    aria-label="Status"
+                                                    fullWidth
+                                                    className={ibm.className}
+                                                    sx={{
+                                                        margin: "10px 0"
+                                                    }}
+                                                    variant="outlined"
+                                                    defaultValue="Available"
+                                                    onChange={handleStatusChange}
+                                                >
+                                                    <MenuItem disabled value="">
+                                                        <em className={ibm.className}>Status</em>
+                                                    </MenuItem>
+                                                    <MenuItem value={'Available'} className={ibm.className}>Available</MenuItem>
+                                                    <MenuItem value={'In use'} className={ibm.className}>In use</MenuItem>
+                                                    <MenuItem value={'Repairing'} className={ibm.className}>Repairing</MenuItem>
+                                                    <MenuItem value={'Damaged'} className={ibm.className}>Damaged</MenuItem>
+                                                </Select>
+                                                <div className={styles.servicesDiv}>
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                        <DatePicker
+                                                            label="Last service"
+                                                            name="last_service"
+                                                        />
+                                                    </LocalizationProvider>
+                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                        <DatePicker
+                                                            label="Next service"
+                                                            name="next_service"
+                                                        />
+                                                    </LocalizationProvider>
+                                                </div>
+                                                <TextField
+                                                    autoFocus
+                                                    required
+                                                    margin="dense"
+                                                    id="name"
+                                                    name="description"
+                                                    label="Description"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="outlined"
+                                                />
+                                                <TextField
+                                                    autoFocus
+                                                    required
+                                                    margin="dense"
+                                                    id="name"
+                                                    name="area"
+                                                    label="Area"
+                                                    type="text"
+                                                    fullWidth
+                                                    variant="outlined"
+                                                />
+                                                <Button
+                                                    component="label"
+                                                    role={undefined}
+                                                    variant="contained"
+                                                    tabIndex={-1}
+                                                    startIcon={<CloudUploadIcon />}
+                                                    className={ibm.className}
+                                                    sx={{
+                                                        margin: "5px 0"
+                                                    }}
+                                                >
+                                                    Upload file
+                                                    <VisuallyHiddenInput type="file" id="name"
+                                                    name="image" required />
+                                                </Button>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClickEditClose} className={ibm.className} variant="contained">Cancel</Button>
+                                                <Button type="submit" className={ibm.className}variant="contained">Update</Button>
+                                            </DialogActions>
+                                        </Dialog>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Delete" arrow onClick={handleClick}>

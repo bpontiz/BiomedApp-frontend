@@ -8,7 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-const VisuallyHiddenInput = styled('input')({
+export const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
     height: 1,
@@ -114,7 +114,7 @@ export default function FormDialog() {
                             onChange={handleStatusChange}
                         >
                             <MenuItem disabled value="">
-                                <em>Status</em>
+                                <em className={ibm.className}>Status</em>
                             </MenuItem>
                             <MenuItem value={'Available'} className={ibm.className}>Available</MenuItem>
                             <MenuItem value={'In use'} className={ibm.className}>In use</MenuItem>
