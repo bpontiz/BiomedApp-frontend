@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow-y: auto;
     scrollbar-gutter: stable;
     font-size: 14px;
 }
@@ -41,6 +40,7 @@
     flex-direction: column;
     height: 80vh;
     padding-top: 2rem;
+    overflow-y: auto;
 }
 
 .listTitle {

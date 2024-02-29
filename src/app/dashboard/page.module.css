@@ -19,7 +19,9 @@
 }
 
 .mainDashboard {
-    padding: 2rem 0;
+    background-color: #e6e6e6;
+    height: 100%;
+    padding: 2rem 2rem 0 2rem;
 }
 
 .personMessage {

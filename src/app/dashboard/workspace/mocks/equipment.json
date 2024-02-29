@@ -1,0 +1,50 @@
+[
+    {
+        "id":1,
+        "name":"ECG",
+        "serie":"BP3AJ45",
+        "status":"Available",
+        "last_service":"02/26/2024",
+        "next_service":"05/27/2024",
+        "description":"Records the electrical signal from the heart to check for different heart conditions. Electrodes are placed on the chest to record the heart's electrical signals, which cause the heart to beat. The signals are shown as waves on an attached computer monitor or printer.",
+        "area":"Monitoring, any",
+        "image":"ecgGEMAC2000.png",
+        "timestamp":"2024-02-26T16:55:11Z"
+    },
+    {
+        "id":2,
+        "name":"Pulse oximeter",
+        "serie":"MKN 1500",
+        "status":"Available",
+        "last_service":"12/26/2023",
+        "next_service":"03/26/2024",
+        "description":"The pulse oximeter observes a rapid measurement of oxygen saturation level in your body without using needles or taking a blood sample. The measured amount shown on the screen reflects the saturation of your red blood cells with oxygen.",
+        "area":"Monitoring, any",
+        "image":"pulseOximeter.jpg",
+        "timestamp":"2024-02-26T17:00:16Z"
+    },
+    {
+        "id":3,
+        "name":"CT",
+        "serie":"GE 2024",
+        "status":"Damaged",
+        "last_service":"02/28/2024",
+        "next_service":"08/28/2024",
+        "description":"CT scans can be used to identify disease or injury within various regions of the body. For example, CT has become a useful screening tool for detecting possible tumors or lesions within the abdomen. A CT scan of the heart may be ordered when various types of heart disease or abnormalities are suspected.",
+        "area":"Monitoring, any",
+        "image":"Header_CT.jpg",
+        "timestamp":"2024-02-26T17:02:04Z"
+    },
+    {
+        "id":4,
+        "name":"Monitor",
+        "serie":"FAR H1",
+        "status":"Repairing",
+        "last_service":"03/28/2024",
+        "next_service":"06/28/2024",
+        "description":"The multiparameter patient monitors, also known as cardiac monitors, are used to measure the vital signs of a patient that determine their condition. It involves monitoring vital signs such as respiratory rate, blood pressure, oxygen saturation, among others, on a screen.",
+        "area":"Monitoring, any",
+        "image":"monitorMindray.png",
+        "timestamp":"2024-02-29T19:16:39Z"
+    }
+]

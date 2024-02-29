@@ -1,25 +1,24 @@
 import Product from "../schema/product";
 import styles from './item.module.css';
 import Image from "next/image";
-import CT from '../../../../../public/Header_CT.jpg';
 import BuildIcon from '@mui/icons-material/Build';
-import { Chip, IconButton, Stack, Tooltip } from "@mui/material";
+import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Stack, Tooltip } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 export default function Item( { id, name, serie, status, last_service, next_service, area, image, description }: Product ) {
-
-    useEffect(() => {
-        console.log(image);
-    }, []);
-
+    const [open, setOpen] = useState(false);
     const handleDeleteEquipment = async () => {
         const url = `${process.env.NEXT_PUBLIC_API_DELETEMACHINERY}/${id}` || "http:localhost/";
         
         await fetch(url, { method: "DELETE" });
     }
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
     return (
         <section className={styles.section}>
@@ -31,6 +30,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                     <Image className={styles.deviceImg} src={`/${image}`}width={300} height={150} alt="Medical Device" />
                     <div className={styles.cardBodyD}>
                         <p>{description}</p>
+                        <Divider />
                         <ul className={styles.ulItems}>
                             <li>Serie: {serie}</li>
                             <li>Last service: {last_service}</li>
@@ -54,9 +54,29 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                         <EditIcon sx={{color: "#2774AE"}} />
                                     </IconButton>
                                 </Tooltip>
-                                <Tooltip title="Delete" arrow onClick={handleDeleteEquipment}>
+                                <Tooltip title="Delete" arrow onClick={handleClick}>
                                     <IconButton aria-label="delete">
                                         <DeleteIcon sx={{color: "#ED2839"}} />
+                                        <Dialog
+                                            open={open}
+                                            onClose={handleClick}
+                                            aria-labelledby="alert-dialog-title"
+                                            aria-describedby="alert-dialog-description"
+                                        >
+                                            <DialogTitle id="alert-dialog-title">
+                                            {"Delete equipment?"}
+                                            </DialogTitle>
+                                            <DialogContent>
+                                                <DialogContentText id="alert-dialog-description">
+                                                    You are going to delete this <strong>{name}</strong>. This action cannot be undone.
+                                                </DialogContentText>
+                                            </DialogContent>
+                                            <DialogActions>
+                                                <Button onClick={handleClick}>Disagree</Button>
+                                                <Button onClick={handleDeleteEquipment} autoFocus>
+                                                Agree</Button>
+                                            </DialogActions>
+                                        </Dialog>
                                     </IconButton>
                                 </Tooltip>
                             </Stack>

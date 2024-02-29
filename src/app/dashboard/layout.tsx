@@ -29,7 +29,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     const [open, setOpen] = useState(true);
     const [count, setCount] = useState(3);
     const [lang, setLang] = useState(usFlag);
-    const [invisible, setInvisible] = useState(false);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [anchorElLanguage, setAnchorElLanguage] = useState<null | HTMLElement>(null);
     const [anchorElMessages, setAnchorElMessages] = useState<null | HTMLElement>(null);
@@ -88,10 +87,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         setOpen(false);
     };
 
-    const handleBadgeVisibility = () => {
-        setInvisible(!invisible);
-    };
-
     return (
         <Box 
             sx={{
@@ -109,7 +104,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         bgcolor: `${theme2.palette.info.main}`,
-                        height: '85px',
+                        height: '96px',
                         boxShadow: '0px 2px 5px 0px rgba(0,0,0,0.15)',
                     }}
                 >
@@ -402,8 +397,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             alignItems: 'center',
                             height: '87px',
                             bgcolor: `${theme2.palette.secondary.main}`,
-                            pt: '2rem',
-                            pb: '2rem'
+                            pt: '3rem',
+                            pb: '3rem'
                         }}
                     >
                         <div className={styles.enterpriseLogo}>
@@ -419,7 +414,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <Sidebar />
                 </Drawer>
             </ThemeProvider>
-            <Main open={open}>
+            <Main sx={{padding: "1rem 0rem"}} open={open}>
                 <DrawerHeader />
                 <div className={`${styles.mainDashboard} ${ibm.className}`}>
                     {children}

@@ -1,9 +1,14 @@
+.mainSection {
+    height: calc(100vh - 176px);
+    overflow-y: auto;
+}
+
 .head {
     display: flex;
     flex-direction: column;
     justify-content: center;
     row-gap: 8px;
-    margin-left: 0rem;
+    margin-top: 1rem;
 }
 
 .title {
@@ -17,7 +22,7 @@
 .todayIs {
     display: inline;
     font-weight: bold;
-    color: #888;
+    color: #2d22ca;
 }
 
 .cardContainer {
@@ -35,6 +40,7 @@
     display: flex;
     flex-direction: column;
     row-gap: 1.5rem;
+    background-color: #fff;
     box-shadow: 1px 1px 5px 5px rgba(230, 230, 230, 0.8);
     border-radius: 20px;
 }
@@ -67,6 +73,7 @@
 
 .brokenByAreaDiv {
     box-shadow: 1px 1px 5px 5px rgba(230, 230, 230, 0.8);
+    background-color: #fff;
     border-radius: 20px;
     padding: 16px;
     margin-top: 2rem;
@@ -91,7 +98,6 @@
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
-    
 }
 
 .area {

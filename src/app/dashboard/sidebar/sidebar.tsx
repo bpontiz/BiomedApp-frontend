@@ -60,7 +60,7 @@ export default function Sidebar() {
             <div className={styles.bottom}>
                 <ThemeProvider theme={theme}>
                     <List
-                        sx={{ width: '100%', maxWidth: 350, ml: 1}}
+                        sx={{ width: '100%', maxWidth: 275, ml: 2}}
                         component="nav"
                         aria-labelledby="nested-list-subheader"
                         subheader={

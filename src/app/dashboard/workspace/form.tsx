@@ -42,7 +42,6 @@ export default function FormDialog() {
             <Button variant="contained" onClick={handleClickOpen}
             sx={{
                 fontWeight: "400",
-                borderRadius: "20px",
                 fontSize: "12px",
                 textTransform: "capitalize",
             }}>
@@ -158,17 +157,6 @@ export default function FormDialog() {
                             fullWidth
                             variant="outlined"
                         />
-                        {/* <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="name"
-                            name="image"
-                            label=""
-                            type="file"
-                            fullWidth
-                            variant="outlined"
-                        /> */}
                         <Button
                             component="label"
                             role={undefined}
