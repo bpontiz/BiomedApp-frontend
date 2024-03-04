@@ -4,7 +4,7 @@ import Image from "next/image";
 import BuildIcon from '@mui/icons-material/Build';
 import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, TextField, Tooltip } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { ReactNode, useState } from "react";
+import { ChangeEvent, FormEvent, ReactNode, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { ibm } from "@/app/lib/fonts";
@@ -17,14 +17,15 @@ export default function Item( { id, name, serie, status, last_service, next_serv
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [_status, setStatus] = useState('');
+    const [newImage, setNewImage] = useState(image);
     const handleDeleteEquipment = async () => {
-        const url = `${process.env.NEXT_PUBLIC_API_DELETEMACHINERY}/${id}` || "http:localhost/";
+        const url = `${process.env.NEXT_PUBLIC_API_DELETEMACHINERY}/${id}` || "http:localhost:/";
         
         await fetch(url, { method: "DELETE" });
-    }
+    };
 
     const handleClick = () => {
-        setOpen(true);
+        setOpen(!open);
     };
 
     const handleClickEditOpen = () => {
@@ -40,6 +41,10 @@ export default function Item( { id, name, serie, status, last_service, next_serv
         setStatus(event.target.value);
     };
 
+    const handleNewImageChange = (event: FormEvent<HTMLInputElement>) => {
+        setNewImage(event.currentTarget.value);
+    };
+
     return (
         <section className={styles.section}>
             <div className={styles.cardD}>
@@ -49,7 +54,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                 <div>
                     <Image className={styles.deviceImg} src={`/${image}`}width={300} height={150} alt="Medical Device" />
                     <div className={styles.cardBodyD}>
-                        <p>{description}</p>
+                        <p className={styles.pDescription}>{description}</p>
                         <Divider />
                         <ul className={styles.ulItems}>
                             <li>Serie: {serie}</li>
@@ -81,15 +86,15 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     event.preventDefault();
                                                     const formData = new FormData(event.currentTarget);
                                                     const formJson = Object.fromEntries((formData as any).entries());
-                                                    const url = process.env.NEXT_PUBLIC_API_POSTMACHINERY || 'https://localhost';
-                                                    const newEquipment = {
+                                                    const url = `${process.env.NEXT_PUBLIC_API_UPDATEMACHINERY}/${id}` || 'https://localhost';
+                                                    const updatedEquipment = {
                                                         ...formJson,
                                                         image: formJson.image.name
                                                     };
                                                     await fetch(url, {
-                                                        method: "POST",
+                                                        method: "PUT",
                                                         headers: {"Content-Type": "application/json"},
-                                                        body: JSON.stringify(newEquipment)
+                                                        body: JSON.stringify(updatedEquipment)
                                                     });
                                                     handleClickEditClose();
                                                 },
@@ -110,6 +115,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     type="text"
                                                     fullWidth
                                                     variant="outlined"
+                                                    defaultValue={name || ""}
                                                 />
                                                 <TextField
                                                     autoFocus
@@ -121,6 +127,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     type="text"
                                                     fullWidth
                                                     variant="outlined"
+                                                    defaultValue={serie || ""}
                                                 />
                                                 <Select
                                                     required
@@ -134,7 +141,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                         margin: "10px 0"
                                                     }}
                                                     variant="outlined"
-                                                    defaultValue="Available"
+                                                    defaultValue={status || "Available"}
                                                     onChange={handleStatusChange}
                                                 >
                                                     <MenuItem disabled value="">
@@ -146,18 +153,24 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     <MenuItem value={'Damaged'} className={ibm.className}>Damaged</MenuItem>
                                                 </Select>
                                                 <div className={styles.servicesDiv}>
-                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                        <DatePicker
-                                                            label="Last service"
-                                                            name="last_service"
-                                                        />
-                                                    </LocalizationProvider>
-                                                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                                        <DatePicker
-                                                            label="Next service"
-                                                            name="next_service"
-                                                        />
-                                                    </LocalizationProvider>
+                                                    <div className={styles.servicesDiv2}>
+                                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                            <DatePicker
+                                                                label="Last service"
+                                                                name="last_service"
+                                                            />
+                                                        </LocalizationProvider>
+                                                        Previous date: {last_service || ""}
+                                                    </div>
+                                                    <div className={styles.servicesDiv3}>
+                                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                            <DatePicker
+                                                                label="Next service"
+                                                                name="next_service"
+                                                            />
+                                                        </LocalizationProvider>
+                                                        Previous date: {next_service || ""}
+                                                    </div>
                                                 </div>
                                                 <TextField
                                                     autoFocus
@@ -169,6 +182,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     type="text"
                                                     fullWidth
                                                     variant="outlined"
+                                                    defaultValue={description || ""}
                                                 />
                                                 <TextField
                                                     autoFocus
@@ -180,6 +194,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     type="text"
                                                     fullWidth
                                                     variant="outlined"
+                                                    defaultValue={area || ""}
                                                 />
                                                 <Button
                                                     component="label"
@@ -193,9 +208,10 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     }}
                                                 >
                                                     Upload file
-                                                    <VisuallyHiddenInput type="file" id="name"
+                                                    <VisuallyHiddenInput type="file" id="name" onChange={handleNewImageChange}
                                                     name="image" required />
                                                 </Button>
+                                                <p>{newImage || ""}</p>
                                             </DialogContent>
                                             <DialogActions>
                                                 <Button onClick={handleClickEditClose} className={ibm.className} variant="contained">Cancel</Button>
