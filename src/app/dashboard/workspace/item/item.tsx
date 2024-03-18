@@ -4,7 +4,7 @@ import Image from "next/image";
 import BuildIcon from '@mui/icons-material/Build';
 import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, MenuItem, Select, SelectChangeEvent, Stack, TextField, Tooltip } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { ChangeEvent, FormEvent, ReactNode, useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { ibm } from "@/app/lib/fonts";
@@ -12,6 +12,7 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { VisuallyHiddenInput } from "../form";
+import dayjs from "dayjs";
 
 export default function Item( { id, name, serie, status, last_service, next_service, area, image, description }: Product ) {
     const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
         setStatus(event.target.value);
     };
 
-    const handleNewImageChange = (event: FormEvent<HTMLInputElement>) => {
+    const handleNewImageChange = (event: FormEvent<HTMLInputElement>) => { 
         setNewImage(event.currentTarget.value);
     };
 
@@ -89,7 +90,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     const url = `${process.env.NEXT_PUBLIC_API_UPDATEMACHINERY}/${id}` || 'https://localhost';
                                                     const updatedEquipment = {
                                                         ...formJson,
-                                                        image: formJson.image.name
+                                                        image: formJson.image.name || newImage
                                                     };
                                                     await fetch(url, {
                                                         method: "PUT",
@@ -102,7 +103,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                         >
                                             <DialogTitle className={ibm.className}>Update {name}</DialogTitle>
                                             <DialogContent>
-                                                <DialogContentText className={ibm.className}>
+                                                <DialogContentText sx={{ marginBottom: "1rem"}} className={ibm.className}>
                                                     Edit this equipment with new information.
                                                 </DialogContentText>
                                                 <TextField
@@ -158,18 +159,18 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                             <DatePicker
                                                                 label="Last service"
                                                                 name="last_service"
+                                                                defaultValue={dayjs(last_service)}
                                                             />
                                                         </LocalizationProvider>
-                                                        Previous date: {last_service || ""}
                                                     </div>
                                                     <div className={styles.servicesDiv3}>
                                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                             <DatePicker
                                                                 label="Next service"
                                                                 name="next_service"
+                                                                defaultValue={dayjs(next_service)}
                                                             />
                                                         </LocalizationProvider>
-                                                        Previous date: {next_service || ""}
                                                     </div>
                                                 </div>
                                                 <TextField
@@ -208,8 +209,12 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                                     }}
                                                 >
                                                     Upload file
-                                                    <VisuallyHiddenInput type="file" id="name" onChange={handleNewImageChange}
-                                                    name="image" required />
+                                                    <VisuallyHiddenInput
+                                                        type="file"
+                                                        id="name"
+                                                        onChange={handleNewImageChange}
+                                                        name="image"
+                                                    />
                                                 </Button>
                                                 <p>{newImage || ""}</p>
                                             </DialogContent>
