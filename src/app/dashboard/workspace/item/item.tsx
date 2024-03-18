@@ -13,6 +13,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { VisuallyHiddenInput } from "../form";
 import dayjs from "dayjs";
+import Link from "next/link";
 
 export default function Item( { id, name, serie, status, last_service, next_service, area, image, description }: Product ) {
     const [open, setOpen] = useState(false);
@@ -72,7 +73,11 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                                 </Tooltip>
                                 <Tooltip title="More" arrow>
                                     <IconButton aria-label="more details">
-                                        <AddCircleIcon sx={{color: "#181830"}} />
+                                        <Link 
+                                            href={`/dashboard/workspace/itemDetail/${String(id)}`}
+                                            style={{display: "grid", placeItems: "center"}}>
+                                            <AddCircleIcon sx={{color: "#181830"}} />
+                                        </Link>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip title="Edit" arrow>
