@@ -1,0 +1,25 @@
+.header {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mainDiv {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.flexRow {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+    column-gap: 100px;
+}
+
+.descriptionP {
+    width: 800px;
+}

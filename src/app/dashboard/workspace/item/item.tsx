@@ -54,7 +54,7 @@ export default function Item( { id, name, serie, status, last_service, next_serv
                     <h2>{name}</h2>
                 </div>
                 <div>
-                    <Image className={styles.deviceImg} src={`/${image}`}width={300} height={150} alt="Medical Device" />
+                    <Image className={styles.deviceImg} src={`/${image}`} width={300} height={150} alt="Medical Device" />
                     <div className={styles.cardBodyD}>
                         <p className={styles.pDescription}>{description}</p>
                         <Divider />

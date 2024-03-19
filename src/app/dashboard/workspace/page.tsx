@@ -6,7 +6,7 @@ import FormDialog from './form';
 import { ibm } from '@/app/lib/fonts';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
-const url = process.env.NEXT_PUBLIC_API_GETMACHINERY || 'https://localhost';
+export const url = process.env.NEXT_PUBLIC_API_GETMACHINERY || 'https://localhost';
 
 export default function Page() {
     const [machinery, setMachinery] = useState([]);
